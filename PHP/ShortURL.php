@@ -32,7 +32,7 @@ class ShortURL {
 
     public static function decode($str) {
         $num = 0;
-		$len = strlen($str);
+        $len = strlen($str);
         for ($i = 0; $i < $len; $i++) {
             $num = $num * self::BASE + strpos(self::ALPHABET, $str[$i]);
         }
