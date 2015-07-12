@@ -15,3 +15,14 @@
 + (long long)decimalNumberWithBase62String:(NSString *)string;
 
 @end
+
+
+//    Examlples to call
+
+//    NSLog(@"%lld", [NSString decimalNumberWithBase62String:@"21"]);
+//    NSLog(@"%lld", [NSString decimalNumberWithBase62String:@"123"]);
+//    NSLog(@"%lld", [NSString decimalNumberWithBase62String:@"AbCd"]);
+//
+//    NSLog(@"%@", [NSString base62StringWithDecimalNumber:1234567890]);
+//    NSLog(@"%@", [NSString base62StringWithDecimalNumber:125]);
+//    NSLog(@"%@", [NSString base62StringWithDecimalNumber:10]);
