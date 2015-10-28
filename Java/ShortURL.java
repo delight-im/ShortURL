@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class ShortURL {
 
-    private static final String ALPHABET = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_";
-    private static final int BASE = ALPHABET.length();
-    private static final String FORBIDSET = "01aeilouAEIOU";
+    public static final String ALPHABET = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_";
+    public static final int BASE = ALPHABET.length();
 
     public static String encode(int num) {
         StringBuilder str = new StringBuilder();
@@ -36,7 +35,7 @@ public class ShortURL {
         int num = 0;
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
-            if (FORBIDSET.indexOf(c) >= 0) {
+            if (ALPHABET.indexOf(c) < 0) {
                 num = -1;
                 break;
             }
@@ -58,12 +57,12 @@ public class ShortURL {
         return str.toString();
     }
 
-    public static String decodeWithBigNumber(String str) {
+    public static BigInteger decodeWithBigNumber(String str) {
         BigInteger bNum = new BigInteger("0");
         BigInteger bBase = new BigInteger(Integer.toString(BASE));
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
-            if (FORBIDSET.indexOf(c) >= 0) {
+            if (ALPHABET.indexOf(c) < 0) {
                 bNum = new BigInteger("-1");
                 break;
             }
@@ -71,6 +70,6 @@ public class ShortURL {
             bNum = bNum.multiply(bBase).add(br);
         }
 
-        return bNum.toString();
+        return bNum;
     }
 }
