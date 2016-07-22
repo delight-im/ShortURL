@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * ShortURL (https://github.com/delight-im/ShortURL)
+ * Copyright (c) delight.im (https://www.delight.im/)
+ * Licensed under the MIT License (https://opensource.org/licenses/MIT)
+ */
+
 /**
  * ShortURL: Bijective conversion between natural numbers (IDs) and short strings
  *
@@ -13,8 +19,6 @@
  *
  * Example output:
  * 123456789 <=> pgK8p
- *
- * Source: https://github.com/delight-im/ShortURL (Apache License 2.0)
  */
 class ShortURL {
 

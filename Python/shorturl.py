@@ -1,3 +1,7 @@
+# ShortURL (https://github.com/delight-im/ShortURL)
+# Copyright (c) delight.im (https://www.delight.im/)
+# Licensed under the MIT License (https://opensource.org/licenses/MIT)
+
 class ShortURL:
 	"""
 	ShortURL: Bijective conversion between natural numbers (IDs) and short strings
@@ -12,8 +16,6 @@ class ShortURL:
 
 	Example output:
 	123456789 <=> pgK8p
-
-	Source: https://github.com/delight-im/ShortURL (Apache License 2.0)
 	"""
 
 	_alphabet = '23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_'
