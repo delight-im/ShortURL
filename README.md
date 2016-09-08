@@ -21,6 +21,8 @@ Useful for URL shorteners and short IDs in your permalinks
    * look-alike characters are not used
 
 ## Example output
+
+ * `3141592` <=> `vJST`
  * `123456789` <=> `pgK8p`
 
 ## License
