@@ -29,7 +29,7 @@ class ShortURL {
 		$str = '';
 
 		while ($num > 0) {
-			$str = substr(self::ALPHABET, ($num % self::BASE), 1) . $str;
+			$str = self::ALPHABET[($num % self::BASE)] . $str;
 			$num = floor($num / self::BASE);
 		}
 
