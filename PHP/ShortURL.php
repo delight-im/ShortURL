@@ -30,7 +30,7 @@ class ShortURL {
 
 		while ($num > 0) {
 			$str = self::ALPHABET[($num % self::BASE)] . $str;
-			$num = floor($num / self::BASE);
+			$num = (int) ($num / self::BASE);
 		}
 
 		return $str;
