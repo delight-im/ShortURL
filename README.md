@@ -25,6 +25,10 @@ Useful for URL shorteners and short IDs in your permalinks
  * `3141592` <=> `vJST`
  * `123456789` <=> `pgK8p`
 
+## Contributing
+
+All contributions are welcome! If you wish to contribute, please create an issue first so that your feature, problem or question can be discussed.
+
 ## License
 
 This project is licensed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
