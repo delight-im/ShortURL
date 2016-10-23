@@ -1,4 +1,4 @@
-#<?php
+<?php
 
 /*
  * ShortURL (https://github.com/delight-im/ShortURL)
