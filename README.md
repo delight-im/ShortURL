@@ -25,6 +25,10 @@ Useful for URL shorteners and short IDs in your permalinks
  * `3141592` <=> `vJST`
  * `123456789` <=> `pgK8p`
 
+## Number range
+
+All numbers from 1 to 2,147,483,647 inclusively can be safely encoded and decoded again in all implementations.
+
 ## Contributing
 
 All contributions are welcome! If you wish to contribute, please create an issue first so that your feature, problem or question can be discussed.
