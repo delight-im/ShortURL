@@ -1,4 +1,4 @@
-<?php
+#<?php
 
 /*
  * ShortURL (https://github.com/delight-im/ShortURL)
@@ -28,9 +28,9 @@ class ShortURL {
 	public static function encode($num) {
 		$str = '';
 
-		while ($num > 0) {
-			$str = self::ALPHABET[($num % self::BASE)] . $str;
-			$num = (int) ($num / self::BASE);
+		while (bccomp ( $num, '0', 0 ) > 0) {
+			$str = self::ALPHABET[(((int)$num) % self::BASE)] . $str;
+			$num = bcdiv ( $num, self::BASE, 0 );
 		}
 
 		return $str;
