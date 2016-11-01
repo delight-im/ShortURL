@@ -26,11 +26,33 @@ class ShortURL {
 	const BASE = 51; // strlen(self::ALPHABET)
 
 	public static function encode($num) {
-		$str = '';
+		static $mode=-1;
+		if($mode===-1){
+			if(is_callable('gmp_div_q')){
+				$mode=1;
+			}elseif(is_callable('bcdiv')){
+				$mode=2;
+			} else {
+				$mode=0;
+			}
+		}
+		if(!is_int($num) || $num<1 || ($mode===0 && $num>0x7FFFFFFF)){
+			throw new InvalidArgumentException('argument 1 MUST be an int between 1 and '.($mode!==0?PHP_INT_MAX:0x7FFFFFFF.' (PS, if you install the GMP or BCMath extensions, the limit will be upgraded to '.PHP_INT_MAX.')'));
+		}
 
+		$str = '';
 		while ($num > 0) {
 			$str = self::ALPHABET[($num % self::BASE)] . $str;
-			$num = (int) ($num / self::BASE);
+			if($num<=0x7FFFFFFF)
+			{
+				$num = (int) ($num / self::BASE);
+			} elseif($mode===1) {
+				$num=gmp_intval(gmp_div_q($num,self::BASE));
+			} elseif($mode===2){
+				$num=(int)bcdiv($num,SELF::BASE);
+			}else {
+				throw new LogicException('unreachable code reached!');
+			}
 		}
 
 		return $str;
