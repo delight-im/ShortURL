@@ -37,7 +37,7 @@ class ShortURL {
 			}
 		}
 		if(!is_int($num) || $num<1 || ($mode===0 && $num>0x7FFFFFFF)){
-			throw new InvalidArgumentException('argument 1 MUST be an int between 1 and '.($mode!==0?PHP_INT_MAX:0x7FFFFFFF.' (PS, if you install the GMP or BCMath extensions, the limit will be upgraded to '.PHP_INT_MAX.')'));
+			throw new InvalidArgumentException('argument 1 MUST be an int between 1 and '.(($mode!==0 || PHP_INT_MAX===0x7FFFFFFF)?PHP_INT_MAX:0x7FFFFFFF.' (PS, if you install the GMP or BCMath extensions, the limit will be upgraded to '.PHP_INT_MAX.')'));
 		}
 
 		$str = '';
