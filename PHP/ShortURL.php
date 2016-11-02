@@ -49,7 +49,7 @@ class ShortURL {
 			} elseif($mode===1) {
 				$num=gmp_intval(gmp_div_q($num,self::BASE));
 			} elseif($mode===2){
-				$num=(int)bcdiv($num,SELF::BASE);
+				$num=(int)bcdiv($num,SELF::BASE,0);
 			}else {
 				throw new LogicException('unreachable code reached!');
 			}
