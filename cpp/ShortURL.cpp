@@ -16,24 +16,24 @@
  */
 
 #include <string>
+#include <stdexcept>
 
 class ShortURL {
-    const std::string alphabet = std::string("23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_");
-    std::size_t base = alphabet.length();
+    static const std::string alphabet;
 
 public:
-    std::string encode(int num) {
+    static std::string encode(int num) {
         std::string str;
 
         while(num > 0) {
-            str = alphabet.at(num % base) + str;
-            num /= base;
+            str = alphabet.at(num % alphabet.length()) + str;
+            num /= alphabet.length();
         }
 
         return str;
     }
 
-    int decode(const std::string& str) {
+    static int decode(const std::string& str) {
         int num = 0;
 
         for(std::string::const_iterator ix = str.cbegin(); ix != str.cend(); ++ix) {
@@ -42,9 +42,11 @@ public:
             if(cIndex == std::string::npos)
                 throw std::invalid_argument("Invalid character");
 
-            num = num * base + cIndex;
+            num = num * alphabet.length() + cIndex;
         }
 
         return num;
     }
 };
+
+const std::string ShortURL::alphabet("23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_");
