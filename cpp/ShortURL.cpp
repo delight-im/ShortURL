@@ -20,14 +20,15 @@
 
 class ShortURL {
     static const std::string alphabet;
+    static const std::size_t base;
 
 public:
     static std::string encode(int num) {
         std::string str;
 
         while(num > 0) {
-            str = alphabet.at(num % alphabet.length()) + str;
-            num /= alphabet.length();
+            str = alphabet.at(num % base) + str;
+            num /= base;
         }
 
         return str;
@@ -42,7 +43,7 @@ public:
             if(cIndex == std::string::npos)
                 throw std::invalid_argument("Invalid character");
 
-            num = num * alphabet.length() + cIndex;
+            num = num * base + cIndex;
         }
 
         return num;
@@ -50,3 +51,4 @@ public:
 };
 
 const std::string ShortURL::alphabet("23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_");
+const std::size_t ShortURL::base = alphabet.length();
