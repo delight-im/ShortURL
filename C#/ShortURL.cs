@@ -3,6 +3,8 @@
  * Copyright (c) delight.im (https://www.delight.im/)
  * Licensed under the MIT License (https://opensource.org/licenses/MIT)
  */
+using System.Linq;
+using System.Text;
 
 /**
  * ShortURL: Bijective conversion between natural numbers (IDs) and short strings
