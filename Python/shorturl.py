@@ -2,7 +2,7 @@
 # Copyright (c) delight.im (https://www.delight.im/)
 # Licensed under the MIT License (https://opensource.org/licenses/MIT)
 
-class ShortURL:
+class ShortURL(str):
 	"""
 	ShortURL: Bijective conversion between natural numbers (IDs) and short strings
 
@@ -20,16 +20,15 @@ class ShortURL:
 
 	_alphabet = '23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_'
 	_base = len(_alphabet)
-
-	def encode(self, number):
-		string = ''
+	
+	def __init__(self, number):
+		self = ''
 		while(number > 0):
 			string = self._alphabet[number % self._base] + string
 			number //= self._base
-		return string
-
-	def decode(self, string):
+	
+	def decode(self, shorturl):
 		number = 0
-		for char in string:
+		for char in shorturl:
 			number = number * self._base + self._alphabet.index(char)
-		return number
+		return ShortURL(number)
