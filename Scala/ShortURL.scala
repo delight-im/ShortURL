@@ -15,7 +15,7 @@
  * Example output:
  * 123456789 <=> pgK8p
  */
-object ShorURL {
+object ShortURL {
   
   val alphabet:String = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_"
   val base:Int = alphabet.length()  
