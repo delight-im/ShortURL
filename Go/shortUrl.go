@@ -10,7 +10,7 @@
  * + proof against offensive words (removed 'a', 'e', 'i', 'o' and 'u')
  * + unambiguous (removed 'I', 'l', '1', 'O' and '0')
  **/
-package ShortUrl
+package ShortURL
 
 import (
 	"fmt"
@@ -27,9 +27,7 @@ type Codec struct{}
 func (c *Codec) Encode(n int) string {
 	var s string
 	for n > 0 {
-		c := string(Alphabets[n%Base])
-		fmt.Println(c)
-		s = c + s
+		s = string(Alphabets[n%Base]) + s
 		n /= Base
 	}
 	return s
@@ -40,7 +38,7 @@ func (c *Codec) Decode(path string) (int, error) {
 	for _, c := range path {
 		i := strings.Index(Alphabets, string(c))
 		if i < 0 {
-			return 0, fmt.Errorf("Invalid input %s", path)
+			return 0, fmt.Errorf("Invalid character %s in input %s", string(c), path)
 		} else {
 			n = n*Base + i
 		}
@@ -48,7 +46,8 @@ func (c *Codec) Decode(path string) (int, error) {
 	}
 	return n, nil
 }
-func InitShortingCodec() *Codec {
+
+func InitShorteningCodec() *Codec {
 	codec := Codec{}
 	return &codec
 }
