@@ -23,6 +23,8 @@ public class ShortURL {
 	public static final String ALPHABET = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_";
 	public static final int BASE = ALPHABET.length();
 
+	private ShortURL() {}
+
 	public static String encode(int num) {
 		StringBuilder str = new StringBuilder();
 		while (num > 0) {
