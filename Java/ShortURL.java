@@ -18,7 +18,7 @@
  * Example output:
  * 123456789 <=> pgK8p
  */
-public class ShortURL {
+public final class ShortURL {
 
 	public static final String ALPHABET = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_";
 	public static final int BASE = ALPHABET.length();
