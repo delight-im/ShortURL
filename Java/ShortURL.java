@@ -40,4 +40,6 @@ public class ShortURL {
 		return num;
 	}
 
+	private ShortURL() {}
+
 }
