@@ -1,4 +1,5 @@
 
+-- noting that if exists is valid for sql server >= 2016
 drop function if exists shorturl_encode
 go
 
