@@ -1,7 +1,8 @@
 
-drop function if exists dbo.shorturl_encode
+drop function if exists shorturl_encode
+go
 
-create function dbo.shorturl_encode(@id int)
+create function shorturl_encode(@id int)
 returns varchar(20)
 as
 begin
@@ -23,8 +24,9 @@ begin
 
 	return @str
 end
+go
 
-drop function if exists dbo.shorturl_decode
+drop function if exists shorturl_decode
 go
 
 create function dbo.shorturl_decode(@str varchar(20) ) 
@@ -49,3 +51,4 @@ begin
 
 	return @num
 end
+go
