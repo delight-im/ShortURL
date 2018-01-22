@@ -5,8 +5,8 @@
 
 	ShortURL: Bijective conversion between natural numbers (IDs) and short strings
 
-	ShortURL.encode() takes an ID and turns it into a short string
-	ShortURL.decode() takes a short string and turns it into an ID
+	ShortURL:encode() takes an ID and turns it into a short string
+	ShortURL:decode() takes a short string and turns it into an ID
 
 	Features:
 	+ large alphabet (51 chars) and thus very short resulting strings
@@ -17,11 +17,11 @@
 	123456789 <=> pgK8p
 ]]--
 
-local ShortUrl = {
+local ShortURL = {
     alphabet = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_"
 }
 
-function ShortUrl:encode(num)
+function ShortURL:encode(num)
 	local base = self.alphabet:len()
 	local str = ""
 
@@ -33,7 +33,7 @@ function ShortUrl:encode(num)
 	return str
 end
 
-function ShortUrl:decode(str)
+function ShortURL:decode(str)
 	local base = self.alphabet:len()
 	local num = 0;
 
@@ -44,4 +44,4 @@ function ShortUrl:decode(str)
 	return num
 end
 
-return ShortUrl
+return ShortURL
