@@ -19,6 +19,8 @@
 	123456789 <=> pgK8p
 ]]--
 
+local floor = math.floor
+
 local ShortURL = {
 	alphabet = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_"
 }
@@ -28,8 +30,8 @@ function ShortURL:encode(num)
 	local str = ""
 
 	while num > 0 do
-		str = string.sub(self.alphabet, num % base, num % base) .. str
-		num = math.floor(num / base)
+		str = self.alphabet:sub((num % base)+1, (num % base)+1) .. str
+		num = floor(num / base)
 	end
 
 	return str
@@ -37,10 +39,10 @@ end
 
 function ShortURL:decode(str)
 	local base = self.alphabet:len()
-	local num = 0;
+	local num = 0
 
 	for i = 1, str:len(), 1 do
-		num = num * base + string.find(self.alphabet, str:sub(i, i), 1, true)
+		num = num * base + self.alphabet:find(str:sub(i, i), 1, true) - 1
 	end
 
 	return num
