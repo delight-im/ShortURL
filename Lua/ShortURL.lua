@@ -28,7 +28,7 @@ function ShortURL:encode(num)
 	local str = ""
 
 	while num > 0 do
-		str = string.sub(self.alphabet, num % base, num % base) .. str
+		str = string.sub(self.alphabet, num % base + 1, num % base + 1) .. str
 		num = math.floor(num / base)
 	end
 
@@ -40,7 +40,7 @@ function ShortURL:decode(str)
 	local num = 0
 
 	for i = 1, str:len(), 1 do
-		num = num * base + string.find(self.alphabet, str:sub(i, i), 1, true)
+		num = num * base + string.find(self.alphabet, str:sub(i, i), 1, true) - 1
 	end
 
 	return num
