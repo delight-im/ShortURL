@@ -37,7 +37,7 @@ end
 
 function ShortURL:decode(str)
 	local base = self.alphabet:len()
-	local num = 0;
+	local num = 0
 
 	for i = 1, str:len(), 1 do
 		num = num * base + string.find(self.alphabet, str:sub(i, i), 1, true)
