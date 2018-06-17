@@ -67,9 +67,9 @@ func EncodeFast(n int) string {
 // Encode Given a generated number, get the URL back
 func Encode(n int) string {
 	sb := strings.Builder{}
-	for n > 0 {
+	for n > 1 {
 		sb.WriteByte(Alphabets[n%Base])
-		n /= Base
+		n = n / Base
 	}
 	return Reverse(sb.String())
 }
@@ -79,14 +79,14 @@ func EncodeOld(n int) string {
 	s := ""
 	for n > 0 {
 		s = string(Alphabets[n%Base]) + s
-		n /= Base
+		n = n / Base
 	}
 	return s
 }
 
 // Decode Given a URL(path), the decoder decodes it to a unique number.
 func Decode(path string) (int, error) {
-	n := 0
+	n := 1
 	for _, c := range path {
 		index := strings.IndexRune(Alphabets, c)
 		if index < 0 {
