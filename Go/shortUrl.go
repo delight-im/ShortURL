@@ -10,7 +10,8 @@
  * + proof against offensive words (removed 'a', 'e', 'i', 'o' and 'u')
  * + unambiguous (removed 'I', 'l', '1', 'O' and '0')
  **/
-package ShortURL
+
+package shorturl
 
 import (
 	"fmt"
@@ -18,12 +19,14 @@ import (
 )
 
 const (
+	// Alphabets is "set of allowed alphabets"
 	Alphabets = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_"
-	Base      = len(Alphabets)
+	// Base is const size of alphabets string
+	Base = len(Alphabets)
 )
 
-// reverseChar Utility to reverse string with only UTF8
-func reverseChars(s string) string {
+// ReverseChars Utility to reverse string with only UTF8
+func ReverseChars(s string) string {
 	bytes := []byte(s)
 	for i, j := 0, len(bytes)-1; i < j; i, j = i+1, j-1 {
 		bytes[i], bytes[j] = bytes[j], bytes[i]
@@ -31,28 +34,65 @@ func reverseChars(s string) string {
 	return string(bytes)
 }
 
-// Encode: given a generated number, get the URL back
+//Reverse string assuming that its all runes.
+func Reverse(s string) string {
+	runes := []rune(s)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
+}
+
+// EncodeNew Given a generated number, get the URL back
+func EncodeNew(n int) string {
+	b := make([]byte, 20, 20)
+	for n > 0 {
+		b = append([]byte{Alphabets[n%Base]}, b...)
+		n /= Base
+	}
+	return string(b)
+}
+
+// EncodeFast Given a generated number, get the URL back
+func EncodeFast(n int) string {
+	sb := strings.Builder{}
+	for n > 0 {
+		sb.WriteByte(Alphabets[n%Base])
+		n /= Base
+	}
+	// we know that alphabets are all chars
+	return ReverseChars(sb.String())
+}
+
+// Encode Given a generated number, get the URL back
 func Encode(n int) string {
 	sb := strings.Builder{}
 	for n > 0 {
 		sb.WriteByte(Alphabets[n%Base])
 		n /= Base
 	}
-	// We know that Alphabet set is UTF8, so we will use reverseChars.
-	return reverseChars(sb.String())
+	return Reverse(sb.String())
 }
 
-// Decode: given a URL(path), the decoder decodes it to a unique number.
+//EncodeOld gives the old implementation
+func EncodeOld(n int) string {
+	s := ""
+	for n > 0 {
+		s = string(Alphabets[n%Base]) + s
+		n /= Base
+	}
+	return s
+}
+
+// Decode Given a URL(path), the decoder decodes it to a unique number.
 func Decode(path string) (int, error) {
 	n := 0
 	for _, c := range path {
-		i := strings.Index(Alphabets, string(c))
-		if i < 0 {
-			return 0, fmt.Errorf("Invalid character %s in input %s", string(c), path)
-		} else {
-			n = n*Base + i
+		index := strings.IndexRune(Alphabets, c)
+		if index < 0 {
+			return 0, fmt.Errorf("Invalid character %c in input %s", c, path)
 		}
-
+		n = n*Base + index
 	}
 	return n, nil
 }
