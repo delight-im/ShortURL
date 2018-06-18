@@ -8,8 +8,9 @@ import (
 //go test -run Encode
 func TestEncodeDecode(t *testing.T) {
 	path := []string{
-		"tvwxyzBF",
+		"tvwxyzBF2",
 		"2BCDFGHJP",
+		"",
 	}
 	for _, v := range path {
 		i, e := Decode(v)
@@ -19,23 +20,11 @@ func TestEncodeDecode(t *testing.T) {
 		s := Encode(i)
 
 		if v != s {
-			t.Fail()
-			fmt.Println("expected :", v, "Got: ", s)
+			if v != string(Alphabets[0])+s { // v may start with Alphabet[0], which in base51 can mean 0.
+				t.Fail()
+				fmt.Println("expected :", v, "Got: ", s)
+			}
 		}
-	}
-}
-
-//BenchmarkEncodeNew run command:  go test -bench=Fast
-func BenchmarkEncodeNew(t *testing.B) {
-	for i := 0; i < 10000000; i++ {
-		EncodeNew(i)
-	}
-}
-
-//BenchmarkEncodeFast run command : go test -bench=Fast
-func BenchmarkEncodeFast(t *testing.B) {
-	for i := 0; i < 10000000; i++ {
-		EncodeFast(i)
 	}
 }
 
@@ -43,13 +32,6 @@ func BenchmarkEncodeFast(t *testing.B) {
 func BenchmarkEncodeOriginal(t *testing.B) {
 	for i := 0; i < 10000000; i++ {
 		Encode(i)
-	}
-}
-
-// BenchmarkEncodeOld run command : go test -bench=Old
-func BenchmarkEncodeOld(t *testing.B) {
-	for i := 0; i < 10000000; i++ {
-		EncodeOld(i)
 	}
 }
 
