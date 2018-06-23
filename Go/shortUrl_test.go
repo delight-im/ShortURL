@@ -10,6 +10,7 @@ func TestEncodeDecode(t *testing.T) {
 	path := []string{
 		"tvwxyzBF2",
 		"2BCDFGHJP",
+		"pgK8p",
 		"",
 	}
 	for _, v := range path {
@@ -18,7 +19,7 @@ func TestEncodeDecode(t *testing.T) {
 			t.Fail()
 		}
 		s := Encode(i)
-
+		fmt.Println(i, "<==>", s)
 		if v != s {
 			if v != string(Alphabets[0])+s { // v may start with Alphabet[0], which in base51 can mean 0.
 				t.Fail()
