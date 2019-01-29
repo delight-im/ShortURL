@@ -18,7 +18,7 @@
 
 mod short_url {
 
-	static ALPHABET: &str = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_";
+	static ALPHABET: &'static str = "23456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ-_";
 	static BASE: usize = 51;
 
 	pub fn encode(mut id: usize) -> String {
